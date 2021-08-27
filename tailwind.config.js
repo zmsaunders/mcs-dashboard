@@ -8,7 +8,7 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
-
+    darkMode: false, // Change to media for support
     theme: {
         extend: {
             fontFamily: {
