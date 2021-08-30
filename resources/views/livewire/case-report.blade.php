@@ -1,51 +1,43 @@
-<div class="flex p-6">
-    <button wire:click="showModal">New Case</button>
-    <x-jet-confirmation-modal wire:model="createCase">
-        <x-slot name="title">
-            New Report
-        </x-slot>
-        <x-slot name="content">
-            <div>
-                <label>School</label>
-                <select wire:model="school_id">
-                    @foreach($schools as $school)
-                        <option value="{{$school->id}}">{{$school->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div>
-                <label>Affected</label>
-                <input type="text" wire:modal="affected" />
-            </div>
+<div class="p-6">
+    <h2 class="text-2xl font-bold">New Case</h2>
+    <div class="flex flex-wrap">
+        <div class="w-full md:w-1/3 lg:w-1/5 flex-auto flex-column p-2">
+            <label class="block text-gray-700 text-sm font-bold mb-2">School</label>
+            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="school_id">
+                <option>-- Please Select --</option>
+                @foreach($schools as $school)
+                    <option value="{{$school->id}}">{{$school->name}}</option>
+                @endforeach
+            </select>
+        </div>
 
-            <div>
-                <label>Case Group</label>
-                <select wire:model="group">
-                    <option value="staff">Staff</option>
-                    <option value="students">Students</option>
-                </select>
-            </div>
-            <div>
-                <label>Case Type</label>
-                <select wire:model="group">
-                    <option value="positive">Positive</option>
-                    <option value="quarantine">Quarantine</option>
-                </select>
-            </div>
+        <div class="w-full md:w-1/3 lg:w-1/5 flex-auto flex-column p-2">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Affected</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" wire:model="affected" />
+        </div>
 
-            <div>
-                <label>Week</label>
-                <input type="date" wire:model="week">
-            </div>
-        </x-slot>
-        <x-slot name="footer">
-             <x-jet-secondary-button wire:click="$toggle('confirmingUserDeletion')" wire:loading.attr="disabled">
-                Cancel
-            </x-jet-secondary-button>
+        <div class="w-full md:w-1/3 lg:w-1/5 flex-auto flex-column p-2">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Case Group</label>
+            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="group">
+                <option value="staff">Staff</option>
+                <option value="students">Students</option>
+            </select>
+        </div>
 
-            <x-jet-danger-button class="ml-2" wire:click="deleteUser" wire:loading.attr="disabled">
-                Delete Account
-            </x-jet-danger-button>
-        </x-slot>
-    </x-jet-dialog-modal>
+        <div class="w-full md:w-1/3 lg:w-1/5 flex-column p-2">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Case Type</label>
+            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="group">
+                <option value="positive">Positive</option>
+                <option value="quarantine">Quarantine</option>
+            </select>
+        </div>
+
+        <div class="w-full md:w-1/3 lg:w-1/5 flex-column p-2">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Week</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" wire:model="week">
+        </div>
+    </div>
+    <div class="flex p-2">
+        <button class="px-6 py-2 flex items-center justify-center rounded-md bg-indigo-600 text-white font-bold" wire:click="save" wire:loading.attr="disabled">Save</button>
+    </div>
 </div>

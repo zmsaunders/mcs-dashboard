@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Report;
 use App\Models\School;
 use Livewire\Component;
 
@@ -13,21 +14,17 @@ class CaseReport extends Component
     public $total;
 
     // The data
-    public $affected;
+    public $affected = 0;
     public $school_id;
-    public $group; // staff or students
-    public $type; // positive or quarantined
+    public $group = 'students'; // staff or students
+    public $type = 'positive'; // positive or quarantined
     public $week; // Date
 
     public function mount()
     {
+        // Get most recent monday:
+        $this->week = date('Y-m-d', strtotime("Previous Monday"));
         $this->schools = School::all();
-        $total = 0;
-        foreach ($this->schools as $school) {
-            $total += $school->student_total;
-        }
-
-        $this->total = $total;
     }
 
     public function render()
@@ -38,5 +35,26 @@ class CaseReport extends Component
     public function showModal()
     {
         $this->createCase = true;
+    }
+
+    public function save()
+    {
+        $report = new Report;
+        $report->affected = $this->affected;
+        $report->school_id = $this->school_id;
+        $report->group = $this->group;
+        $report->type = $this->type;
+        $report->week = $this->week;
+        $report->save();
+        $this->resetFields();
+        $this->emit('reportAdded');
+    }
+
+    public function resetFields() {
+        // Don't reset week
+        $this->affected = 0;
+        $this->school_id = null;
+        $this->group = 'students';
+        $this->type = 'positive';;
     }
 }

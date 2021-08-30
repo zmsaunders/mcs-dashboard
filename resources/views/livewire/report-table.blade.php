@@ -21,5 +21,4 @@
             </tbody>
         </thead>
     </table>
-    <livewire:case-report />
 </div>
