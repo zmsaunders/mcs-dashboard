@@ -39,6 +39,8 @@
             </div>
         </div>
 
+        <p class="text-xs text-grey-200 text-center p-6">&copy; 2021, All Rights Reserved</p>
+
         @livewireScripts
     </body>
 </html>
