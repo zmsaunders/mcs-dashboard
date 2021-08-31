@@ -16,6 +16,15 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-R12GX7E3DM"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-R12GX7E3DM');
+        </script>
     </head>
     <body class="font-sans antialiased bg-gray-100">
         <div class='px-6 lg:px-8 max-w-7xl my-6 mx-auto'>
