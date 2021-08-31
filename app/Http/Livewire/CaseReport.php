@@ -24,7 +24,7 @@ class CaseReport extends Component
     {
         // Get most recent monday:
         $this->week = date('Y-m-d', strtotime("Previous Monday"));
-        $this->schools = School::all();
+        $this->Schools = School::orderBy('name')->get();
     }
 
     public function render()

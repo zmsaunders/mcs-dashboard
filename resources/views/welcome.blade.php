@@ -23,6 +23,8 @@
             <p>The information below is based upon data provided by the <a href="https://miamisburgcityschools.org/">Miamisburg School District</a>. This project was created by a parent within the school district to try to better understand the trends and impact of Covid-19 within the district. This project is not affiliated with, endorsed by, or paid for by the district or any employee of the city.</p>
         </div>
 
+        <livewire:percent-tile />
+
         <div>
             <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">

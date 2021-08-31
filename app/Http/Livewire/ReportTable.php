@@ -20,7 +20,7 @@ class ReportTable extends Component
     public $week;
 
     protected $listeners = [
-        'reportAdded' => 'reload'
+        'reportAdded' => 'refreshData'
     ];
 
     public function mount() {
@@ -35,10 +35,6 @@ class ReportTable extends Component
         $this->refreshData();
     }
 
-    public function reload() {
-        $this->cases = Report::with('school')->get();
-    }
-
     public function render()
     {
         return view('livewire.report-table');
@@ -46,7 +42,7 @@ class ReportTable extends Component
 
     public function refreshData()
     {
-        $this->cases = Report::with('school')->where('week', $this->week)->get();
+        $this->cases = Report::with('school')->where('week', $this->week)->get()->sortBy('school.name');
         $this->totals['stup'] = 0;
         $this->totals['stuq'] = 0;
         $this->totals['stap'] = 0;
