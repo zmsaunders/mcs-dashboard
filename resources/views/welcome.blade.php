@@ -50,6 +50,12 @@
             </div>
         </div>
 
+        <div>
+            <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
+                <livewire:contact-form />
+            </div>
+        </div>
+
         <p class="text-xs text-grey-200 text-center p-6">&copy; 2021, All Rights Reserved</p>
 
         @livewireScripts

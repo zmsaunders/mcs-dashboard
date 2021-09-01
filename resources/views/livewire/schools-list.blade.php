@@ -3,9 +3,9 @@
     <table class="w-full bg-gray-100">
         <thead class="text-left">
             <tr>
-                <th class="bg-gray-800 text-gray-100 rounded-tl p-2">School</th>
-                <th class="bg-gray-800 text-gray-100 p-2">Enrolled Students</th>
-                <th class="bg-gray-800 text-gray-100 p-2">Staff Total<sup>*</sup></th>
+                <th class="text-sm sm:text-base bg-gray-800 text-gray-100 rounded-tl p-2">School</th>
+                <th class="text-sm sm:text-base bg-gray-800 text-gray-100 p-2">Enrolled Students</th>
+                <th class="text-sm sm:text-base bg-gray-800 text-gray-100 p-2">Staff Total<sup>*</sup></th>
             </tr>
             <tbody>
                 @foreach($schools as $c => $school)
