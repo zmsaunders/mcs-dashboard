@@ -16,18 +16,27 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-R12GX7E3DM"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-R12GX7E3DM');
+        </script>
     </head>
-    <body class="font-sans antialiased bg-gray-100">
+    <body class="font-sans antialiased bg-gray-100 dark:bg-gray-900">
         <div class='px-6 lg:px-8 max-w-7xl my-6 mx-auto'>
-            <h2 class="text-2xl font-bold py-2">Miamisburg City Schools - Reported District Covid Data</h2>
-            <p>The information below is based upon data provided by the <a href="https://miamisburgcityschools.org/">Miamisburg School District</a>. This project was created by a parent within the school district to try to better understand the trends and impact of Covid-19 within the district. This project is not affiliated with, endorsed by, or paid for by the district or any employee of the city.</p>
+            <h2 class="text-2xl font-bold py-2 dark:text-gray-100">Miamisburg City Schools - Reported District Covid Data</h2>
+            <p class="dark:text-gray-100">The information below is based upon data provided by the <a href="https://miamisburgcityschools.org/">Miamisburg School District</a>. This project was created by a parent within the school district to try to better understand the trends and impact of Covid-19 within the district. This project is not affiliated with, endorsed by, or paid for by the district or any employee of the city.</p>
         </div>
 
         <livewire:percent-tile />
 
         <div>
             <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg py-6">
                     <livewire:report-table />
                 </div>
             </div>
@@ -35,13 +44,19 @@
 
         <div>
             <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg py-6">
                     <livewire:schools-list />
                 </div>
             </div>
         </div>
 
-        <p class="text-xs text-grey-200 text-center p-6">&copy; 2021, All Rights Reserved</p>
+        <div>
+            <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
+                <livewire:contact-form />
+            </div>
+        </div>
+
+        <p class="text-xs text-gray-600 dark:text-gray-500 text-center p-6">&copy; 2021, All Rights Reserved</p>
 
         @livewireScripts
     </body>
