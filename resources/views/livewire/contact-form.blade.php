@@ -1,5 +1,5 @@
 <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
-    <div class="container mx-auto max-w-lg">
+    <div class="container mx-auto max-w-lg p-6 md:p-0">
         @if (!$complete && !$show)
         <button class="w-full bg-gray-600 text-gray-200 rounded py-4 px-1 hover:shadow-lg hover:bg-gray-900 transition duration-200" wire:click="show">Questions / Contact</button>
         @elseif (!$complete && $show)
