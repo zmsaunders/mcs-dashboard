@@ -24,7 +24,13 @@ class ReportTable extends Component
     ];
 
     public function mount() {
-        $this->week = date('Y-m-d', strtotime('Previous Week'));
+        // Do we have any data for this week?
+        $this->week = date('Y-m-d', strtotime('Previous Monday'));
+
+        if (! Report::where('week', $this->week)->first()) {
+            $this->week = date('Y-m-d', strtotime('Previous Week'));
+        }
+
         // Get totals...
         $schools = School::all();
         foreach ($schools as $s) {

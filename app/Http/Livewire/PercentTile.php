@@ -31,7 +31,13 @@ class PercentTile extends Component
 
     public function render()
     {
-        $this->week = date('Y-m-d', strtotime('Previous Week'));
+        // Do we have any data for this week?
+        $this->week = date('Y-m-d', strtotime('Previous Monday'));
+
+        if (! Report::where('week', $this->week)->first()) {
+            $this->week = date('Y-m-d', strtotime('Previous Week'));
+        }
+
         // Previous Week
         $this->pweek = date('Y-m-d', strtotime('-1 week', strtotime($this->week)));
         $this->generateTotal();

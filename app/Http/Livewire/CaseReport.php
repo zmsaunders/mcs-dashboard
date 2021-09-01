@@ -14,17 +14,19 @@ class CaseReport extends Component
     public $total;
 
     // The data
-    public $affected = 0;
+    public $student_positive = 0;
+    public $staff_positive = 0;
+    public $student_quarantine = 0;
+    public $staff_quarantine = 0;
+
     public $school_id;
-    public $group = 'students'; // staff or students
-    public $type = 'positive'; // positive or quarantined
     public $week; // Date
 
     public function mount()
     {
         // Get most recent monday:
         $this->week = date('Y-m-d', strtotime("Previous Monday"));
-        $this->Schools = School::orderBy('name')->get();
+        $this->schools = School::orderBy('name')->get();
     }
 
     public function render()
@@ -40,10 +42,11 @@ class CaseReport extends Component
     public function save()
     {
         $report = new Report;
-        $report->affected = $this->affected;
+        $report->student_positive = $this->student_positive;
+        $report->student_quarantine = $this->student_quarantine;
+        $report->staff_positive = $this->staff_positive;
+        $report->staff_quarantine = $this->staff_quarantine;
         $report->school_id = $this->school_id;
-        $report->group = $this->group;
-        $report->type = $this->type;
         $report->week = $this->week;
         $report->save();
         $this->resetFields();
@@ -52,9 +55,10 @@ class CaseReport extends Component
 
     public function resetFields() {
         // Don't reset week
-        $this->affected = 0;
+        $this->student_positive = 0;
+        $this->staff_positive = 0;
+        $this->student_quarantine = 0;
+        $this->staff_quarantine = 0;
         $this->school_id = null;
-        $this->group = 'students';
-        $this->type = 'positive';;
     }
 }

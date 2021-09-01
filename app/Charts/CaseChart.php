@@ -39,7 +39,12 @@ class CaseChart extends BaseChart
     {
         // Build our weeks:
         $weeks = [];
-        $start = date('Y-m-d', strtotime('-1 week', strtotime("Previous Monday")));
+        // Do we have any data for this week?
+        $start = date('Y-m-d', strtotime('Previous Monday'));
+
+        if (! Report::where('week', $start)->first()) {
+            $start = date('Y-m-d', strtotime('Previous Week'));
+        }
 
         for ($i = 0; $i < $this->weeks ; $i++) {
             $week = date('Y-m-d', strtotime('-' . $i . ' weeks', strtotime($start)));
