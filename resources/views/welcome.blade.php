@@ -63,6 +63,16 @@
 
         <div>
             <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6">
+                    <h2 class="text-center text-2xl font-bold py-2 dark:text-gray-100">Totals for last 4 weeks</h2>
+                     <p class="text-sm text-center text-gray-500 dark:text-gray-300 pb-3">Totals across all schools in district</p>
+                    <div id="chart" style="height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg py-6">
                     <livewire:report-table />
                 </div>
@@ -86,5 +96,21 @@
         <p class="text-xs text-gray-600 dark:text-gray-500 text-center p-6">&copy; 2021, All Rights Reserved</p>
 
         @livewireScripts
+
+        <!-- Chart Libraries -->
+        <script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
+        <!-- Chartisan -->
+        <script src="https://unpkg.com/@chartisan/chartjs@^2.1.0/dist/chartisan_chartjs.umd.js"></script>
+        <script>
+          const chart = new Chartisan({
+            el: '#chart',
+            url: "@chart('case_chart')",
+            hooks: new ChartisanHooks()
+                .responsive()
+                .colors(['#34D399', '#60A5FA', '#A78BFA', '#FBBF24'])
+                .borderColors(['#34D399', '#60A5FA', '#A78BFA', '#FBBF24'])
+                .datasets([{ type: 'line', fill: false }]),
+          });
+        </script>
     </body>
 </html>
