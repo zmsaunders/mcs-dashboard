@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\Contact;
+use App\Mail\ContactMail;
 use Livewire\Component;
 use Mail;
 
@@ -36,7 +36,7 @@ class ContactForm extends Component
         $this->validate();
 
         if ($this->company === '') {
-            Mail::to(env('MAIL_REC'))->send(new Contact($this->name, $this->email, $this->message));
+            Mail::to(env('MAIL_REC'))->send(new ContactMail($this->name, $this->email, $this->message));
         }
 
         $this->complete = true;
