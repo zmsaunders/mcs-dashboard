@@ -4,6 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta property="og:url" content="https://mcscovid.com/" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Miamisburg City Schools - Reported District Covid Data" />
+        <meta property="og:description" content="A project trying to better understand the trends and impact of Covid-19 within the district." />
+        <meta property="og:image" content="https://mcscovid.com/socimg.png" />
 
         <title>Miamisburg City Schools - Reported District Covid Data</title>
 
@@ -29,7 +34,7 @@
     <body class="font-sans antialiased bg-gray-100 dark:bg-gray-900">
         <div class='px-6 lg:px-8 max-w-7xl my-6 mx-auto'>
             <h2 class="text-2xl font-bold py-2 dark:text-gray-100">Miamisburg City Schools - Reported District Covid Data</h2>
-            <p class="dark:text-gray-100">The information below is based upon data provided by the <a href="https://miamisburgcityschools.org/">Miamisburg School District</a>. This project was created by a parent within the school district to try to better understand the trends and impact of Covid-19 within the district. This project is not affiliated with, endorsed by, or paid for by the district or any employee of the city.</p>
+            <p class="dark:text-gray-100">The information below is based upon data provided by the <a href="https://miamisburgcityschools.org/">Miamisburg School District</a> and will be updated as data is released. This project was created by a parent within the school district to try to better understand the trends and impact of Covid-19 within the district. This project is not affiliated with, endorsed by, or paid for by the district or any employee of the city.</p>
         </div>
 
         <div>
