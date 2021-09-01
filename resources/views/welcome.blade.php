@@ -32,7 +32,29 @@
             <p class="dark:text-gray-100">The information below is based upon data provided by the <a href="https://miamisburgcityschools.org/">Miamisburg School District</a>. This project was created by a parent within the school district to try to better understand the trends and impact of Covid-19 within the district. This project is not affiliated with, endorsed by, or paid for by the district or any employee of the city.</p>
         </div>
 
-        <livewire:percent-tile />
+        <div>
+            <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+                <livewire:percent-tile
+                    :type="'student_positive'"
+                    :text="'Students Positive'"
+                    :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4'" />
+
+                <livewire:percent-tile
+                    :type="'student_quarantine'"
+                    :text="'Students Quarantined'"
+                    :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4'" />
+
+                <livewire:percent-tile
+                    :type="'staff_positive'"
+                    :text="'Staff Positive'"
+                    :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4'" />
+
+                <livewire:percent-tile
+                    :type="'staff_quarantine'"
+                    :text="'Staff Quarantined'"
+                    :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4'" />
+            </div>
+        </div>
 
         <div>
             <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">

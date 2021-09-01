@@ -8,43 +8,62 @@ use Livewire\Component;
 
 class PercentTile extends Component
 {
-    public $schools;
-    public $current;
     public $week;
-    private $cases;
+    public $pweek;
+    public $perc;
+    public $pperc;
+    public $text;
+    public $type;
+    public $class;
 
-    public $stup;
-    public $stuq;
-    public $stap;
-    public $staq;
+    protected $stuTotal;
+    protected $staTotal;
+
+    public function mount()
+    {
+        $this->stuTotal = 0;
+        $this->staTotal = 0;
+        foreach(School::orderBy('name')->get() as $school) {
+            $this->stuTotal += $school->student_total;
+            $this->staTotal += $school->staff_total;
+        }
+    }
 
     public function render()
     {
         $this->week = date('Y-m-d', strtotime('Previous Week'));
-        $this->cases = Report::with('school')->where('week', $this->week)->get()->sortBy('school.name');
-        $this->schools = School::orderBy('name')->get();
+        // Previous Week
+        $this->pweek = date('Y-m-d', strtotime('-1 week', strtotime($this->week)));
         $this->generateTotal();
         return view('livewire.percent-tile');
     }
 
     public function generateTotal()
     {
-        $students = 0;
-        $staff = 0;
-        foreach($this->schools as $school) {
-            $students += $school->student_total;
-            $staff += $school->staff_total;
-        }
-        foreach ($this->cases as $c) {
-            $this->stup += $c->student_positive;
-            $this->stuq += $c->student_quarantine;
-            $this->stap += $c->staff_positive;
-            $this->staq += $c->staff_quarantine;
+        $cases = Report::with('school')->where('week', $this->week)->get()->sortBy('school.name');
+        $pcases = Report::with('school')->where('week', $this->pweek)->get()->sortBy('school.name');
+        $this->perc = 0;
+        $this->pperc = 0;
+        foreach ($cases as $c) {
+            $this->perc += $c->{$this->type};
         }
 
-        $this->stup = round((float) ($this->stup  / $students) * 100, 1);
-        $this->stuq = round((float) ($this->stuq  / $students) * 100, 1);
-        $this->stap = round((float) ($this->stap  / $staff) * 100, 1);
-        $this->staq = round((float) ($this->staq  / $staff) * 100, 1);
+        foreach ($pcases as $c) {
+            $this->pperc += $c->{$this->type};
+        }
+
+
+        switch($this->type) {
+            case "student_positive":
+            case "student_quarantine":
+                $this->perc = round((float) ($this->perc / $this->stuTotal) * 100, 1);
+                $this->pperc = round((float) ($this->pperc / $this->stuTotal) * 100, 1);
+            break;
+            case "staff_positive":
+            case "staff_quarantine":
+                $this->perc = round((float) ($this->perc / $this->staTotal) * 100, 1);
+                $this->pperc = round((float) ($this->perc / $this->staTotal) * 100, 1);
+            break;
+        }
     }
 }
