@@ -32,38 +32,42 @@
         </script>
     </head>
     <body class="font-sans antialiased bg-gray-100 dark:bg-gray-900">
-        <div class='px-6 lg:px-8 max-w-7xl my-6 mx-auto'>
-            <h2 class="text-2xl font-bold py-2 dark:text-gray-100">Miamisburg City Schools - Reported District Covid Data</h2>
-            <p class="dark:text-gray-100">The information below is based upon data provided by the <a href="https://miamisburgcityschools.org/">Miamisburg School District</a> and will be updated as data is released. This project was created by a parent within the school district to try to better understand the trends and impact of Covid-19 within the district. This project is not affiliated with, endorsed by, or paid for by the district or any employee of the city.</p>
+        <div class="dark:bg-indigo-900 bg-indigo-700 shadow-md p-6">
+            <div class='px-6 lg:px-8 max-w-7xl my-6 mx-auto'>
+                <h2 class="text-2xl font-bold pb-2 text-white dark:text-gray-100">Miamisburg City Schools - Reported District Covid Data</h2>
+                <p class="dark:text-gray-100 text-white">The information below is based upon data provided by the <a href="https://miamisburgcityschools.org/">Miamisburg School District</a> and will be updated as data is released. This project was created by a parent within the school district to try to better understand the trends and impact of Covid-19 within the district. This project is not affiliated with, endorsed by, or paid for by the district or any employee of the city.</p>
+            </div>
         </div>
+
+        {{-- <livewire:global-filter /> --}}
 
         <div>
             <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8 grid grid-cols-2 gap-4 md:grid-cols-4">
                 <livewire:percent-tile
                     :type="'student_positive'"
                     :text="'Students Positive'"
-                    :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4'" />
+                    :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg p-4'" />
 
                 <livewire:percent-tile
                     :type="'student_quarantine'"
                     :text="'Students Quarantined'"
-                    :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4'" />
+                    :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg p-4'" />
 
                 <livewire:percent-tile
                     :type="'staff_positive'"
                     :text="'Staff Positive'"
-                    :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4'" />
+                    :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg p-4'" />
 
                 <livewire:percent-tile
                     :type="'staff_quarantine'"
                     :text="'Staff Quarantined'"
-                    :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-4'" />
+                    :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg p-4'" />
             </div>
         </div>
 
         <div>
             <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg p-6">
                     <h2 class="text-center text-2xl font-bold py-2 dark:text-gray-100">Totals for last 4 weeks</h2>
                      <p class="text-sm text-center text-gray-500 dark:text-gray-300 pb-3">Totals across all schools in district</p>
                     <div id="chart" style="height: 400px;"></div>
@@ -73,7 +77,7 @@
 
         <div>
             <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg py-6">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg py-6">
                     <livewire:report-table />
                 </div>
             </div>
@@ -81,7 +85,7 @@
 
         <div>
             <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg py-6">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg py-6">
                     <livewire:schools-list />
                 </div>
             </div>

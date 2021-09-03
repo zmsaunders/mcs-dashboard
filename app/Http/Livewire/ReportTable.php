@@ -20,7 +20,8 @@ class ReportTable extends Component
     public $week;
 
     protected $listeners = [
-        'reportAdded' => 'refreshData'
+        'reportAdded' => 'refreshData',
+        'FilterChange' => 'updateFilters',
     ];
 
     public function mount() {
@@ -71,6 +72,12 @@ class ReportTable extends Component
     public function prevWeek()
     {
         $this->week = date('Y-m-d', strtotime('-1 week', strtotime($this->week)));
+        $this->refreshData();
+    }
+
+    public function updateFilters($week, $school)
+    {
+        $this->week = date('Y-m-d', strtotime($week));
         $this->refreshData();
     }
 }
