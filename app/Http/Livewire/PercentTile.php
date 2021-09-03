@@ -58,7 +58,6 @@ class PercentTile extends Component
             $this->pperc += $c->{$this->type};
         }
 
-
         switch($this->type) {
             case "student_positive":
             case "student_quarantine":
@@ -68,7 +67,7 @@ class PercentTile extends Component
             case "staff_positive":
             case "staff_quarantine":
                 $this->perc = round((float) ($this->perc / $this->staTotal) * 100, 1);
-                $this->pperc = round((float) ($this->perc / $this->staTotal) * 100, 1);
+                $this->pperc = round((float) ($this->pperc / $this->staTotal) * 100, 1);
             break;
         }
     }
