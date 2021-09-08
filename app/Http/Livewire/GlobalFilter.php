@@ -31,7 +31,11 @@ class GlobalFilter extends Component
         // Get Available Dates
         $weeks = Report::select('week')->distinct()->orderBy('week', 'desc')->get();
         foreach ($weeks as $week) {
-            $this->dates[] = date('M d, Y', strtotime($week->week));
+            if (is_null($this->date)) {
+                $this->date = $week->week;
+            }
+
+            $this->dates[$week->week] = date('M d, Y', strtotime($week->week)) . " - " . date('M d, Y', strtotime('+1 week', strtotime($week->week)));
         }
     }
 

@@ -15,21 +15,17 @@ class PercentTile extends Component
     public $text;
     public $type;
     public $class;
+    public $school = 'all';
 
-    protected $stuTotal;
-    protected $staTotal;
+    public $stuTotal;
+    public $staTotal;
+
+    protected $listeners = [
+        'reportAdded' => 'loadData',
+        'FilterChange' => 'updateFilters',
+    ];
 
     public function mount()
-    {
-        $this->stuTotal = 0;
-        $this->staTotal = 0;
-        foreach(School::orderBy('name')->get() as $school) {
-            $this->stuTotal += $school->student_total;
-            $this->staTotal += $school->staff_total;
-        }
-    }
-
-    public function render()
     {
         // Do we have any data for this week?
         $this->week = date('Y-m-d', strtotime('Previous Monday'));
@@ -37,17 +33,47 @@ class PercentTile extends Component
         if (! Report::where('week', $this->week)->first()) {
             $this->week = date('Y-m-d', strtotime('Previous Week'));
         }
+    }
 
+    public function loadData()
+    {
         // Previous Week
         $this->pweek = date('Y-m-d', strtotime('-1 week', strtotime($this->week)));
+
+        $this->stuTotal = 0;
+        $this->staTotal = 0;
+
+        if ($this->school == 'all') {
+            foreach(School::orderBy('name')->get() as $school) {
+                $this->stuTotal += $school->student_total;
+                $this->staTotal += $school->staff_total;
+            }
+        } else {
+            $school = School::where('id', $this->school)->first();
+            $this->stuTotal = $school->student_total;
+            $this->staTotal = $school->staff_total;
+        }
+
         $this->generateTotal();
+    }
+
+    public function render()
+    {
+        $this->loadData();
         return view('livewire.percent-tile');
     }
 
     public function generateTotal()
     {
-        $cases = Report::with('school')->where('week', $this->week)->get()->sortBy('school.name');
-        $pcases = Report::with('school')->where('week', $this->pweek)->get()->sortBy('school.name');
+        $cquery = Report::with('school')->where('week', $this->week);
+        $pquery = Report::with('school')->where('week', $this->pweek);
+        if($this->school != 'all') {
+            $cquery = $cquery->where('school_id', $this->school);
+            $pquery = $pquery->where('school_id', $this->school);
+        }
+
+        $cases = $cquery->get()->sortBy('school.name');
+        $pcases = $pquery->get()->sortBy('school.name');
         $this->perc = 0;
         $this->pperc = 0;
         foreach ($cases as $c) {
@@ -70,5 +96,13 @@ class PercentTile extends Component
                 $this->pperc = round((float) ($this->pperc / $this->staTotal) * 100, 1);
             break;
         }
+    }
+
+    public function updateFilters($week, $school)
+    {
+        $this->week = date('Y-m-d', strtotime($week));
+        $this->pweek = date('Y-m-d', strtotime('-1 week', strtotime($this->week)));
+        $this->school = $school;
+        $this->loadData();
     }
 }

@@ -21,12 +21,29 @@ class CaseChart extends BaseChart
     public $stuq = [];
     public $stap = [];
     public $staq = [];
+    public $endDate;
+    public $school;
 
-    private $weeks = 4;
+    public $weeks = 4;
 
     public function handler(Request $request): Chartisan
     {
+        if ($request->get('date')) {
+            $this->endDate = $request->get('date');
+        } else {
+            $this->endDate = date('Y-m-d', strtotime('Previous Monday'));
+
+            if (! Report::where('week', $this->endDate)->first()) {
+                $this->endDate = date('Y-m-d', strtotime('Previous Week'));
+            }
+        }
+
+        $this->school = $request->get('school') ?? 'all';
+
+        $this->weeks = $request->get('weeks') ?? 4;
+
         $this->gatherData();
+
         return Chartisan::build()
             ->labels(array_reverse($this->labels))
             ->dataset('Students Positive', array_reverse($this->stup))
@@ -39,17 +56,16 @@ class CaseChart extends BaseChart
     {
         // Build our weeks:
         $weeks = [];
-        // Do we have any data for this week?
-        $start = date('Y-m-d', strtotime('Previous Monday'));
-
-        if (! Report::where('week', $start)->first()) {
-            $start = date('Y-m-d', strtotime('Previous Week'));
-        }
 
         for ($i = 0; $i < $this->weeks ; $i++) {
-            $week = date('Y-m-d', strtotime('-' . $i . ' weeks', strtotime($start)));
+            $week = date('Y-m-d', strtotime('-' . $i . ' weeks', strtotime($this->endDate)));
             $this->labels[] =  date('m / d', strtotime($week));
-            $weeks[$i] = Report::with('school')->where('week', $week)->get()->sortBy('school.name');
+
+            if ($this->school == 'all') {
+                $weeks[$i] = Report::with('school')->where('week', $week)->get()->sortBy('school.name');
+            } else {
+                $weeks[$i] = Report::with('school')->where('week', $week)->where('school_id', $this->school)->get()->sortBy('school.name');
+            }
         }
 
         foreach($weeks as $k => $week) {

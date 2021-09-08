@@ -1,6 +1,6 @@
 <div class="{{$class}}">
     <h2 class="text-center text-lg font-bold mb-2 text-gray-800 dark:text-gray-400">{{$text}}
-            <span class="block text-xs font-regular text-gray-500">This Week</span>
+            <span class="block text-xs font-regular text-gray-500">Weekly Total</span>
     </h2>
     @if($perc > $pperc)
         <p class="text-center text-red-600 text-4xl font-bold py-6">

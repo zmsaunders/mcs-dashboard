@@ -1,5 +1,5 @@
 <div>
-    <h2 class="text-center dark:text-gray-400 text-2xl font-bold mb-6 md:px-6 text-gray-800">Data for week of {{date('m / d / y', strtotime($this->week))}}</h2>
+    <h2 class="text-center dark:text-gray-400 text-2xl font-bold mb-6 md:px-6 text-gray-800">District Data for week of {{date('m / d / y', strtotime($this->week))}}</h2>
     @if ($cases->count() == 0)
         <p class="text-center dark:text-gray-400">No report was provided for the week of {{date('m / d / y', strtotime($this->week))}}.</p>
     @else

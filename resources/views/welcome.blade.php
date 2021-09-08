@@ -36,10 +36,9 @@
             <div class='px-6 lg:px-8 max-w-7xl my-6 mx-auto'>
                 <h2 class="text-2xl font-bold pb-2 text-white dark:text-gray-100">Miamisburg City Schools - Reported District Covid Data</h2>
                 <p class="dark:text-gray-100 text-white">The information below is based upon data provided by the <a href="https://miamisburgcityschools.org/">Miamisburg School District</a> and will be updated as data is released. This project was created by a parent within the school district to try to better understand the trends and impact of Covid-19 within the district. This project is not affiliated with, endorsed by, or paid for by the district or any employee of the city.</p>
+                <livewire:global-filter />
             </div>
         </div>
-
-        {{-- <livewire:global-filter /> --}}
 
         <div>
             <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8 grid grid-cols-2 gap-4 md:grid-cols-4">
@@ -68,9 +67,9 @@
         <div>
             <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg p-6">
-                    <h2 class="text-center text-2xl font-bold py-2 dark:text-gray-100">Totals for last 4 weeks</h2>
-                     <p class="text-sm text-center text-gray-500 dark:text-gray-300 pb-3">Totals across all schools in district</p>
+                    <livewire:chart-title />
                     <div id="chart" style="height: 400px;"></div>
+                    <livewire:chart-week-settings />
                 </div>
             </div>
         </div>
@@ -100,20 +99,39 @@
         <p class="text-xs text-gray-600 dark:text-gray-500 text-center p-6">&copy; 2021, All Rights Reserved</p>
 
         @livewireScripts
-
-        <!-- Chart Libraries -->
         <script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
         <!-- Chartisan -->
         <script src="https://unpkg.com/@chartisan/chartjs@^2.1.0/dist/chartisan_chartjs.umd.js"></script>
         <script>
-          const chart = new Chartisan({
+          var url = "@chart('case_chart')";
+          var showSchool = 'all';
+          var showWeek = false;
+          var showWeeks = 4;
+          var chart = new Chartisan({
             el: '#chart',
-            url: "@chart('case_chart')",
+            url: "@chart('case_chart')" + '?school=' + showSchool,
             hooks: new ChartisanHooks()
                 .responsive()
                 .colors(['#34D399', '#60A5FA', '#A78BFA', '#FBBF24'])
                 .borderColors(['#34D399', '#60A5FA', '#A78BFA', '#FBBF24'])
                 .datasets([{ type: 'line', fill: false }]),
+          });
+
+          Livewire.on('FilterChange', (week, school) => {
+           showSchool = school;
+           showWeek = week;
+           url = "@chart('case_chart')" + '?date=' + showWeek + '&school=' + showSchool + '&weeks=' + showWeeks;
+           chart.update({url:url});
+          });
+
+          Livewire.on('SetWeeks', (weeks) => {
+            showWeeks = weeks;
+           if (showWeek) {
+            url = "@chart('case_chart')" + '?date=' + showWeek + '&school=' + showSchool + '&weeks=' + showWeeks;
+           } else {
+            url = "@chart('case_chart')" + '?school=' + showSchool + '&weeks=' + showWeeks;
+           }
+           chart.update({url:url});
           });
         </script>
     </body>
