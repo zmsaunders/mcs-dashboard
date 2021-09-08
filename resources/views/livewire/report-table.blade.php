@@ -76,8 +76,4 @@
     </div>
     <p class="text-gray-700 dark:text-gray-500 text-xs py-2 px-6">Note: Percentages are # of cases / # of students enrolled at school, or # of cases / # of staff as reported on <a href="https://miamisburgcityschools.org">miamisburgcityschools.org</a>.
     @endif
-    <div class="flex justify-between px-6">
-        <button class="rounded bg-indigo-700 hover:bg-indigo-900 text-indigo-100 font-bold px-6 py-2 w-1/3 md:w-60 my-6" wire:click="prevWeek">Previous</button>
-        <button class="rounded bg-indigo-700 hover:bg-indigo-900 text-indigo-100 font-bold px-6 py-2 w-1/3 md:w-60 my-6" wire:click="nextWeek">Next</button>
-    </div>
 </div>

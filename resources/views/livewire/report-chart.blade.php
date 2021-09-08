@@ -1,7 +1,6 @@
 <div class="{{$class}}">
-    <h2 class="text-center text-2xl font-bold py-2 dark:text-gray-100">Totals for last 4 weeks</h2>
-    <p class="text-sm text-center text-gray-500 dark:text-gray-300 pb-3">Totals across all schools in district</p>
-    <div id="chart" style="height: 400px;"></div>
+    <livewire:chart-title />
+    <div wire:ignore id="chart" style="height: 400px;"></div>
     <livewire:chart-week-settings />
 </div>
 

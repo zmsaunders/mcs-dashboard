@@ -41,7 +41,7 @@
         </div>
 
         <div>
-            <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+            <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
                 <livewire:percent-tile
                     :type="'student_positive'"
                     :text="'Students Positive'"
@@ -66,11 +66,8 @@
 
         <div>
             <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg p-6">
-                    <livewire:chart-title />
-                    <div id="chart" style="height: 400px;"></div>
-                    <livewire:chart-week-settings />
-                </div>
+                    <livewire:report-chart
+                        :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg p-6'" />
             </div>
         </div>
 
