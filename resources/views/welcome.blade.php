@@ -38,7 +38,7 @@
     <body class="font-sans antialiased bg-gray-100 dark:bg-gray-900">
         <div class="dark:bg-indigo-900 bg-indigo-700 shadow-md p-6">
             <div class='px-6 lg:px-8 max-w-7xl my-6 mx-auto'>
-                <h2 class="text-2xl font-bold pb-2 text-white dark:text-gray-100">Miamisburg City Schools - Reported District Covid Data</h2>
+                <h1 class="text-2xl font-bold pb-2 text-white dark:text-gray-100">Miamisburg City Schools - Reported District Covid Data</h1>
                 <p class="dark:text-gray-100 text-white">The information below is based upon data provided by the <a href="https://miamisburgcityschools.org/">Miamisburg School District</a> and will be updated as data is released. This project was created by a parent within the school district to try to better understand the trends and impact of Covid-19 within the district. This project is not affiliated with, endorsed by, or paid for by the district or any employee of the city.</p>
                 <livewire:global-filter />
             </div>
