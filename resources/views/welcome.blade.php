@@ -8,7 +8,7 @@
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Miamisburg City Schools - Reported District Covid Data" />
         <meta property="og:description" content="A project trying to better understand the trends and impact of Covid-19 within the district." />
-        <meta property="og:image" content="https://mcscovid.com/socimg.png" />
+        <meta property="og:image" content="https://mcscovid.com/socimg-latest.png" />
 
         <title>Miamisburg City Schools - Reported District Covid Data</title>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
