@@ -5,3 +5,33 @@
 .companyform {
     display: none;
 }
+
+.card {
+    perspective: 1000px;
+    .card-inner {
+        transition: transform 0.4s;
+        transform-style: preserve-3d;
+    }
+
+    &:hover .card-inner {
+        transform: rotateY(180deg);
+        transition: transform 0.3s;
+    }
+
+    .card-front, .card-back {
+      position: relative;
+      backface-visibility: hidden;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .card { perspective: 6000px;}
+}

@@ -12,7 +12,7 @@
           var url = "@chart($sourcechart)";
           var showSchool = 'all';
           var showWeek = false;
-          var showWeeks = 4;
+          var showWeeks = 6;
           var {{$chartid}} = new Chartisan({
             el: '#{{$chartid}}',
             url: "@chart($sourcechart)" + '?school=' + showSchool,

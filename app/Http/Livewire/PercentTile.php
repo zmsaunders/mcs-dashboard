@@ -12,6 +12,8 @@ class PercentTile extends Component
     public $pweek;
     public $perc;
     public $pperc;
+    public $current_total;
+    public $prev_total;
     public $text;
     public $type;
     public $class;
@@ -19,6 +21,8 @@ class PercentTile extends Component
 
     public $stuTotal;
     public $staTotal;
+
+    public $source;
 
     protected $listeners = [
         'reportAdded' => 'loadData',
@@ -74,26 +78,28 @@ class PercentTile extends Component
 
         $cases = $cquery->get()->sortBy('school.name');
         $pcases = $pquery->get()->sortBy('school.name');
-        $this->perc = 0;
-        $this->pperc = 0;
+        $this->current_total = 0;
+        $this->previous_total = 0;
         foreach ($cases as $c) {
-            $this->perc += $c->{$this->type};
+            $this->current_total += $c->{$this->type};
         }
 
         foreach ($pcases as $c) {
-            $this->pperc += $c->{$this->type};
+            $this->previous_total += $c->{$this->type};
         }
 
         switch($this->type) {
             case "student_positive":
             case "student_quarantine":
-                $this->perc = round((float) ($this->perc / $this->stuTotal) * 100, 1);
-                $this->pperc = round((float) ($this->pperc / $this->stuTotal) * 100, 1);
+                $this->source = $this->stuTotal;
+                $this->perc = round((float) ($this->current_total / $this->stuTotal) * 100, 1);
+                $this->pperc = round((float) ($this->previous_total / $this->stuTotal) * 100, 1);
             break;
             case "staff_positive":
             case "staff_quarantine":
-                $this->perc = round((float) ($this->perc / $this->staTotal) * 100, 1);
-                $this->pperc = round((float) ($this->pperc / $this->staTotal) * 100, 1);
+                $this->source = $this->staTotal;
+                $this->perc = round((float) ($this->current_total / $this->staTotal) * 100, 1);
+                $this->pperc = round((float) ($this->previous_total / $this->staTotal) * 100, 1);
             break;
         }
     }
