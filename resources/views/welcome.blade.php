@@ -69,9 +69,23 @@
         </div>
 
         <div>
-            <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8">
-                    <livewire:report-chart
-                        :class="'bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg p-6'" />
+            <div class="max-w-7xl my-6 mx-auto sm:px-6 lg:px-8 grid grid-cols-1 gap-4">
+                @livewire('report-chart', [
+                    'class'         => 'bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg p-6',
+                    'sourcechart'   => 'student_chart',
+                    'chartid'       => 'student_chart',
+                    'title'         => 'Students',
+                    'url'           => ''
+                ])
+
+                @livewire('report-chart', [
+                    'class'         => 'bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg p-6',
+                    'sourcechart'   => 'staff_chart',
+                    'chartid'       => 'staff_chart',
+                    'title'         => 'Staff',
+                    'url'           => ''
+                ])
+
             </div>
         </div>
 
@@ -103,37 +117,6 @@
         <script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
         <!-- Chartisan -->
         <script src="https://unpkg.com/@chartisan/chartjs@^2.1.0/dist/chartisan_chartjs.umd.js"></script>
-        <script>
-          var url = "@chart('case_chart')";
-          var showSchool = 'all';
-          var showWeek = false;
-          var showWeeks = 4;
-          var chart = new Chartisan({
-            el: '#chart',
-            url: "@chart('case_chart')" + '?school=' + showSchool,
-            hooks: new ChartisanHooks()
-                .responsive()
-                .colors(['#34D399', '#60A5FA', '#A78BFA', '#FBBF24'])
-                .borderColors(['#34D399', '#60A5FA', '#A78BFA', '#FBBF24'])
-                .datasets([{ type: 'line', fill: false }]),
-          });
-
-          Livewire.on('FilterChange', (week, school) => {
-           showSchool = school;
-           showWeek = week;
-           url = "@chart('case_chart')" + '?date=' + showWeek + '&school=' + showSchool + '&weeks=' + showWeeks;
-           chart.update({url:url});
-          });
-
-          Livewire.on('SetWeeks', (weeks) => {
-            showWeeks = weeks;
-           if (showWeek) {
-            url = "@chart('case_chart')" + '?date=' + showWeek + '&school=' + showSchool + '&weeks=' + showWeeks;
-           } else {
-            url = "@chart('case_chart')" + '?school=' + showSchool + '&weeks=' + showWeeks;
-           }
-           chart.update({url:url});
-          });
-        </script>
+        @stack('scripts')
     </body>
 </html>

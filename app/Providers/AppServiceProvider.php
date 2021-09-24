@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Charts\CaseChart;
+use App\Charts\StaffChart;
+use App\Charts\StudentChart;
 use ConsoleTVs\Charts\Registrar as Charts;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,7 +28,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(Charts $charts)
     {
         $charts->register([
-            CaseChart::class
+            CaseChart::class,
+            StudentChart::class,
+            StaffChart::class
         ]);
     }
 }

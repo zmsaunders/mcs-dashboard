@@ -1,46 +1,43 @@
 <div class="{{$class}}">
-    <livewire:chart-title />
-    <div wire:ignore id="chart" style="height: 400px;"></div>
-    <livewire:chart-week-settings />
+    @livewire('chart-title', ['preface' => $title])
+    <div wire:ignore id="{{$chartid}}" class="h-64 lg:h-96"></div>
+    @livewire('chart-week-settings', ['chartid' => $chartid])
+    {{--  --}}
 </div>
 
 {{-- @if($chart) --}}
     @push('scripts')
         {{-- {!! $chart->script() !!} --}}
-
-        <script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>
-        <!-- Chartisan -->
-        <script src="https://unpkg.com/@chartisan/chartjs@^2.1.0/dist/chartisan_chartjs.umd.js"></script>
         <script>
-          var url = "@chart('case_chart')";
+          var url = "@chart($sourcechart)";
           var showSchool = 'all';
           var showWeek = false;
           var showWeeks = 4;
-          var chart = new Chartisan({
-            el: '#chart',
-            url: "@chart('case_chart')" + '?school=' + showSchool,
+          var {{$chartid}} = new Chartisan({
+            el: '#{{$chartid}}',
+            url: "@chart($sourcechart)" + '?school=' + showSchool,
             hooks: new ChartisanHooks()
                 .responsive()
-                .colors(['#34D399', '#60A5FA', '#A78BFA', '#FBBF24'])
-                .borderColors(['#34D399', '#60A5FA', '#A78BFA', '#FBBF24'])
+                .colors({!!$colors!!})
+                .borderColors({!!$colors!!})
                 .datasets([{ type: 'line', fill: false }]),
           });
 
-          Livewire.on('FilterChange', (week, school) => {
+          Livewire.on('FilterChange-{{$chartid}}', (week, school) => {
            showSchool = school;
            showWeek = week;
-           url = "@chart('case_chart')" + '?date=' + showWeek + '&school=' + showSchool + '&weeks=' + showWeeks;
-           chart.update({url:url});
+           url = "@chart($sourcechart)" + '?date=' + showWeek + '&school=' + showSchool + '&weeks=' + showWeeks;
+           {{$chartid}}.update({url:url});
           });
 
-          Livewire.on('SetWeeks', (weeks) => {
+          Livewire.on('SetWeeks-{{$chartid}}', (weeks) => {
             showWeeks = weeks;
            if (showWeek) {
-            url = "@chart('case_chart')" + '?date=' + showWeek + '&school=' + showSchool + '&weeks=' + showWeeks;
+            url = "@chart($sourcechart)" + '?date=' + showWeek + '&school=' + showSchool + '&weeks=' + showWeeks;
            } else {
-            url = "@chart('case_chart')" + '?school=' + showSchool + '&weeks=' + showWeeks;
+            url = "@chart($sourcechart)" + '?school=' + showSchool + '&weeks=' + showWeeks;
            }
-           chart.update({url:url});
+           {{$chartid}}.update({url:url});
           });
         </script>
     @endpush

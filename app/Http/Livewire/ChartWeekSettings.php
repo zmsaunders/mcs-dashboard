@@ -6,7 +6,9 @@ use Livewire\Component;
 
 class ChartWeekSettings extends Component
 {
-    public $weeks = 4;
+    public $weeks = 6;
+    public $chartid;
+
     public function render()
     {
         return view('livewire.chart-week-settings');
@@ -15,6 +17,6 @@ class ChartWeekSettings extends Component
     public function setWeek($weeks)
     {
         $this->weeks = $weeks;
-        $this->emit('SetWeeks', $weeks);
+        $this->emit('SetWeeks-'.$this->chartid, $weeks);
     }
 }

@@ -9,15 +9,18 @@ class ReportChart extends Component
     public $class;
     public $title;
     public $subtitle;
-    public $weeks = 4;
+    public $weeks = 6;
+    public $chartid;
+    public $url;
+    public $sourcechart;
+    public $colors;
 
     protected $listeners = [
         'FilterChange' => 'updateFilters'
     ];
 
     public function mount() {
-        $this->title = "Totals for last 4 weeks";
-        $this->subtitle = "Totals across all schools in district";
+        $this->colors = ($this->chartid == 'student_chart') ? "['#34D399', '#60A5FA']" : "['#A78BFA', '#FBBF24']";
     }
 
     public function render()

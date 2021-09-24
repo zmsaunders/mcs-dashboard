@@ -15,6 +15,7 @@ class ChartTitle extends Component
     public $end;
     public $start;
     public $schoolverb;
+    public $preface;
 
     public $timeTitle;
     public $schoolTitle;
@@ -40,9 +41,9 @@ class ChartTitle extends Component
         $this->end = date('m/d/y', strtotime('+1 week', strtotime($this->week)));
         $this->start = date('m/d/y', strtotime('-'. $this->weeks.' week', strtotime($this->end)));
 
-        $this->timeTitle = "Totals for {$this->start} - {$this->end}";
+        $this->timeTitle = "{$this->preface}: {$this->start} - {$this->end}";
 
-        $this->schoolTitle = "Totals for {$this->schoolverb}";
+        $this->schoolTitle = "{$this->preface} totals for {$this->schoolverb}";
     }
 
     public function render()
