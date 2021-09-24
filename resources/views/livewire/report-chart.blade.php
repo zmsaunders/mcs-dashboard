@@ -23,12 +23,13 @@
                 .datasets([{ type: 'line', fill: false }]),
           });
 
-          Livewire.on('FilterChange-{{$chartid}}', (week, school) => {
+          Livewire.on('FilterChange', (week, school) => {
            showSchool = school;
            showWeek = week;
            url = "@chart($sourcechart)" + '?date=' + showWeek + '&school=' + showSchool + '&weeks=' + showWeeks;
            {{$chartid}}.update({url:url});
           });
+
 
           Livewire.on('SetWeeks-{{$chartid}}', (weeks) => {
             showWeeks = weeks;
