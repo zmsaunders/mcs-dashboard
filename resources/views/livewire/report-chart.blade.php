@@ -31,7 +31,7 @@
           });
 
 
-          Livewire.on('SetWeeks-{{$chartid}}', (weeks) => {
+          Livewire.on('SetWeeks', (weeks) => {
             showWeeks = weeks;
            if (showWeek) {
             url = "@chart($sourcechart)" + '?date=' + showWeek + '&school=' + showSchool + '&weeks=' + showWeeks;

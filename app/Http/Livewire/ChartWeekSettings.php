@@ -9,6 +9,10 @@ class ChartWeekSettings extends Component
     public $weeks = 6;
     public $chartid;
 
+    protected $listeners = [
+        'SetWeeks' => 'updateWeeks'
+    ];
+
     public function render()
     {
         return view('livewire.chart-week-settings');
@@ -16,8 +20,10 @@ class ChartWeekSettings extends Component
 
     public function setWeek($weeks)
     {
-        $this->weeks = $weeks;
-        $this->emit('SetWeeks-'.$this->chartid, $weeks);
         $this->emit('SetWeeks', $weeks);
+    }
+
+    public function updateWeeks($weeks) {
+        $this->weeks = $weeks;
     }
 }
