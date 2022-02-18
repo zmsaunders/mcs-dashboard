@@ -53,7 +53,7 @@ class ChartTitle extends Component
 
     public function updateFilters($week, $school)
     {
-        $this->date = $week;
+        $this->week = $week;
         $this->school = $school;
         $this->verberate();
     }
