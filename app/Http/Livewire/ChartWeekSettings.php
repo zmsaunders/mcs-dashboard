@@ -18,5 +18,6 @@ class ChartWeekSettings extends Component
     {
         $this->weeks = $weeks;
         $this->emit('SetWeeks-'.$this->chartid, $weeks);
+        $this->emit('SetWeeks', $weeks);
     }
 }

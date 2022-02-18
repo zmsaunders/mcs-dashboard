@@ -10,7 +10,7 @@ class ChartTitle extends Component
 {
     public $date;
     public $school = 'all';
-    public $weeks = 4;
+    public $weeks = 6;
     public $week;
     public $end;
     public $start;
