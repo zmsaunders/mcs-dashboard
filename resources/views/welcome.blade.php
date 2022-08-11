@@ -36,7 +36,7 @@
         </script>
     </head>
     <body class="font-sans antialiased bg-gray-100 dark:bg-gray-900">
-        <div class="dark:bg-red-900 bg-red-700 p-6">
+        <div class="dark:bg-red-900 bg-red-700">
             <div class='px-6 lg:px-8 max-w-7xl my-6 mx-auto'>
                 <p class="dark:text-gray-100 text-white">This data is out of date as the covid numbers are no longer being reported.</p>
             </div>
