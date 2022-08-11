@@ -36,6 +36,11 @@
         </script>
     </head>
     <body class="font-sans antialiased bg-gray-100 dark:bg-gray-900">
+        <div class="dark:bg-red-900 bg-red-700 p-6">
+            <div class='px-6 lg:px-8 max-w-7xl my-6 mx-auto'>
+                <p class="dark:text-gray-100 text-white">This data is out of date as the covid numbers are no longer being reported.</p>
+            </div>
+        </div>
         <div class="dark:bg-indigo-900 bg-indigo-700 shadow-md p-6">
             <div class='px-6 lg:px-8 max-w-7xl my-6 mx-auto'>
                 <h1 class="text-2xl font-bold pb-2 text-white dark:text-gray-100">Miamisburg City Schools - Reported District Covid Data</h1>
